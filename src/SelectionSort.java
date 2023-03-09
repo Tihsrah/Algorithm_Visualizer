@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
-public class BubbleSort extends JPanel{
+public class SelectionSort extends JPanel{
 
     private static final long serialVersionUID = 1L;
     private final int WIDTH = 1000, HEIGHT = WIDTH * 9 / 16;
@@ -17,12 +17,12 @@ public class BubbleSort extends JPanel{
     private SwingWorker<Void, Void> shuffler, sorter;
     private int current_index, traversing_index;
 
-    private BubbleSort() {
+    private SelectionSort() {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        bubbleBarHeight();
-        bubbleSorter();
-        bubbleShuffler();
+        selectionBarHeight();
+        selectionSorter();
+        selectionShuffler();
     }
 
     @Override
@@ -53,42 +53,39 @@ public class BubbleSort extends JPanel{
         g2d.fill(bar);
     }
 
-    void bubbleSort(int arr[])
-    {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if (arr[j] > arr[j + 1]) {
-                    // swap arr[j+1] and arr[j]
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-    }
+//    int n = arr.length;
+//
+//    // One by one move boundary of unsorted subarray
+//    for (int i = 0; i < n-1; i++)
+//    {
+//        // Find the minimum element in unsorted array
+//        int min_idx = i;
+//        for (int j = i+1; j < n; j++)
+//            if (arr[j] < arr[min_idx])
+//                min_idx = j;
+//
+//        // Swap the found minimum element with the first
+//        // element
+//        int temp = arr[min_idx];
+//        arr[min_idx] = arr[i];
+//        arr[i] = temp;
+//    }
 
-    private void bubbleSorter() {
+    private void selectionSorter() {
         sorter = new SwingWorker<>() {
             @Override
             public Void doInBackground() throws InterruptedException {
-                for(current_index = 0; current_index < SIZE-1; current_index++) {
+                for(current_index = 0; current_index <SIZE-1; current_index++) {
 //                    traversing_index = current_index;
-                    for(traversing_index=0;traversing_index<SIZE-1;traversing_index++){
-                        if(bar_height[traversing_index]>bar_height[traversing_index+1]){
-                            swap(traversing_index,traversing_index+1);
+                    int min_idx=current_index;
+                    for(traversing_index=current_index+1;traversing_index<SIZE;traversing_index++){
+                        if(bar_height[traversing_index]<bar_height[min_idx]){
+                            min_idx = traversing_index;
                             Thread.sleep(1);
                             repaint();
                         }
-                        repaint();
                     }
-//                    while(traversing_index > 0 &&
-//                            bar_height[traversing_index] < bar_height[traversing_index - 1]) {
-//
-//                        swap(traversing_index, traversing_index - 1);
-//                        traversing_index--;
-//
-//                        Thread.sleep(1);
-//                        repaint();
-//                    }
+                    swap(min_idx,current_index);
                 }
                 current_index = 0;
                 traversing_index = 0;
@@ -98,7 +95,7 @@ public class BubbleSort extends JPanel{
         };
     }
 
-    private void bubbleShuffler() {
+    private void selectionShuffler() {
         shuffler = new SwingWorker<>() {
             @Override
             public Void doInBackground() throws InterruptedException {
@@ -126,7 +123,7 @@ public class BubbleSort extends JPanel{
         shuffler.execute();
     }
 
-    private void bubbleBarHeight() {
+    private void selectionBarHeight() {
         float interval = (float)HEIGHT / SIZE;
         for(int i = 0; i < SIZE; i++)
             bar_height[i] = i * interval;
@@ -144,7 +141,7 @@ public class BubbleSort extends JPanel{
             JFrame frame = new JFrame("Insertion Sort Visualizer");
             frame.setResizable(false);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setContentPane(new BubbleSort());
+            frame.setContentPane(new SelectionSort());
             frame.validate();
             frame.pack();
             frame.setLocationRelativeTo(null);
