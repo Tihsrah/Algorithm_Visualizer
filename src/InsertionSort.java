@@ -1,14 +1,10 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 public class InsertionSort extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -19,9 +15,57 @@ public class InsertionSort extends JPanel {
     private SwingWorker<Void, Void> shuffler, sorter;
     private int current_index, traversing_index;
 
+    static boolean click;
+    static boolean stopped;
+
     private InsertionSort() {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+        JButton reset=new JButton("Reset");
+        reset.setBounds(30,40,80,50);
+        this.add(reset);
+
+        click=true;
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (click==true){
+                    invoke();
+                    click=false;
+                }else{
+                    invoke();
+                    click=true;
+                }
+            }
+        });
+
+        JButton stop=new JButton("Stop");
+        stop.setBounds(60,40,80,50);
+        this.add(stop);
+        stopped=false;
+        stop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (stopped==true){
+//                    initBarHeight();
+                    System.out.println("stopped clicked");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    stopped=false;
+                }else{
+                    stopped=true;
+                }
+            }
+        });
+
+    }
+    public void invoke(){
         initBarHeight();
         initSorter();
         initShuffler();
@@ -128,6 +172,8 @@ public class InsertionSort extends JPanel {
             frame.validate();
             frame.pack();
             frame.setLocationRelativeTo(null);
+
+
             frame.setVisible(true);
         });
     }
