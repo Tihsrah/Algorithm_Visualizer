@@ -19,12 +19,14 @@ public class InsertionSort extends JPanel {
     static boolean stopped;
 
     private InsertionSort() {
-        setBackground(Color.BLACK);
+        setBackground(new Color(0x234E70));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
+        setLayout(null);
         JButton reset=new JButton("Reset");
-        reset.setBounds(30,40,80,50);
+        reset.setBackground(new Color(0x234E70));
+        reset.setForeground(new Color(51-153-255));
         this.add(reset);
+        reset.setBounds(30,500,80,50);
 
         click=true;
         reset.addActionListener(new ActionListener() {
@@ -42,7 +44,9 @@ public class InsertionSort extends JPanel {
         });
 
         JButton stop=new JButton("Stop");
-        stop.setBounds(60,40,80,50);
+        stop.setBounds(110,500,80,50);
+        stop.setBackground(new Color(0x234E70));
+        stop.setForeground(new Color(51-153-255));
         this.add(stop);
         stopped=false;
         stop.addActionListener(new ActionListener() {
@@ -64,6 +68,21 @@ public class InsertionSort extends JPanel {
             }
         });
 
+        JLabel label=new JLabel("InsertionSort");
+        label.setBounds(30,350,80,50);
+        label.setBackground(Color.RED);
+        label.setForeground(new Color(51-153-255));
+        this.add(label);
+
+        JTextField t1=new JTextField();
+        t1.setBounds(30,350,120,130);
+        this.add(t1);
+        t1.setText("Insertion Sort"+"\n"+"Complexity : N^2");
+
+        t1.setForeground(new Color(51-153-255));
+        t1.setBackground(new Color(0x234E70));
+        t1.setEditable(false);
+
     }
     public void invoke(){
         initBarHeight();
@@ -76,12 +95,12 @@ public class InsertionSort extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D)g;
-        g2d.setColor(Color.CYAN);
+        g2d.setColor(new Color(0x0DDEA2));
         Rectangle2D.Float bar;
 //        i * BAR_WIDTH, HEIGHT - bar_height[i], BAR_WIDTH, bar_height[i]
         for(int i = 0; i < SIZE; i++) {
             bar = new Rectangle2D.Float(i * BAR_WIDTH, 0, BAR_WIDTH, bar_height[i]);
-            g2d.fill(bar);
+            g2d.draw(bar);
         }
 
         g2d.setColor(Color.RED);

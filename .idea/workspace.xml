@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6a2a681-05d8-4ffd-8c79-d4087fc22880" name="Changes" comment="">
+    <list default="true" id="e6a2a681-05d8-4ffd-8c79-d4087fc22880" name="Changes" comment="Added buttons to control flow of execution">
+      <change afterPath="$PROJECT_DIR$/src/SortingVisualizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BubbleSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/InsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InsertionSort.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,11 +68,21 @@
       <option name="presentableId" value="Default" />
       <updated>1677940013898</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added buttons to control flow of execution">
+      <created>1679193805414</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679193805414</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="Added buttons to control flow of execution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added buttons to control flow of execution" />
   </component>
 </project>
