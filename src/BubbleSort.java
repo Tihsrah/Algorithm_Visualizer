@@ -141,6 +141,7 @@ public class BubbleSort extends JPanel{
     }
 
 
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Insertion Sort Visualizer");
